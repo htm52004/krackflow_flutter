@@ -1,36 +1,35 @@
 class Task {
+  final int id;
   final String title;
   final String deadline;
-  bool done;
   final String priority;
+  bool done;
 
   Task({
+    required this.id,
     required this.title,
     required this.deadline,
-    required this.done,
     required this.priority,
+    required this.done,
   });
-}
 
-class TaskRepository {
-  static List<Task> tasks = [
-    Task(
-      title: "Projekt Flutter",
-      deadline: "jutro",
-      done: false,
-      priority: "wysoki",
-    ),
-    Task(
-      title: "Oddać raport",
-      deadline: "dzisiaj",
-      done: true,
-      priority: "wysoki",
-    ),
-    Task(
-      title: "Powtórzyć widgety",
-      deadline: "w piątek",
-      done: false,
-      priority: "średni",
-    ),
-  ];
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
+      "title": title,
+      "deadline": deadline,
+      "priority": priority,
+      "done": done,
+    };
+  }
+
+  factory Task.fromMap(Map map) {
+    return Task(
+      id: map["id"],
+      title: map["title"],
+      deadline: map["deadline"],
+      priority: map["priority"],
+      done: map["done"],
+    );
+  }
 }
